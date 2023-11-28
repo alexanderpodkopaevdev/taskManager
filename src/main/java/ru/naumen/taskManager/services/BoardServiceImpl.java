@@ -28,7 +28,7 @@ public class BoardServiceImpl implements BoardService{
     }
 
     @Override
-    public void getBoardById(long id) {
-        repository.findById(id);
+    public Board getBoardById(long id) {
+        return repository.findById(id).get();
     }
 }

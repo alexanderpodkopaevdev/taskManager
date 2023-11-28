@@ -10,5 +10,5 @@ public interface BoardService {
 
     void saveBoard(Board board);
 
-    void getBoardById(long id);
+    Board getBoardById(long id);
 }

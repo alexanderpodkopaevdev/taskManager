@@ -14,6 +14,7 @@ public class Board {
     private Long id;
     private String nameBoard;
 
+
     public Board(String nameBoard) {
         this.nameBoard = nameBoard;
     }
@@ -21,4 +22,6 @@ public class Board {
     public Board() {
 
     }
+
+
 }
