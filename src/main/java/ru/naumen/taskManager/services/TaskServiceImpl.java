@@ -14,6 +14,7 @@ public class TaskServiceImpl implements TaskService{
     private final TaskRepository taskRepository;
     private final BoardRepository boardRepository;
 
+
     public TaskServiceImpl(TaskRepository taskRepository, BoardRepository boardRepository) {
         this.taskRepository = taskRepository;
         this.boardRepository = boardRepository;
