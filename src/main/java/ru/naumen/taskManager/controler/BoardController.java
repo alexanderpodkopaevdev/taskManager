@@ -39,12 +39,23 @@ public class BoardController {
         return getBoards();
     }
 
-    @GetMapping("/addTask/{boardName}/{description}/{boardId}")
+    @GetMapping("/addTask/{taskName}/{description}/{boardId}")
     @ResponseBody
-    public List<Board> addTask(@PathVariable String boardName, @PathVariable String description, @PathVariable Long boardId) {
-        Task newTask = new Task(boardName, description, boardService.getBoardById(boardId));
+    public List<Board> addTask(@PathVariable String taskName, @PathVariable String description, @PathVariable Long boardId) {
+        Task newTask = new Task(taskName, description, boardService.getBoardById(boardId));
         taskService.saveTask(newTask);
         return getBoards();
+    }
+
+    @GetMapping("/allTasks")
+    @ResponseBody
+    public List<Task> getTasks() {
+        return taskService.getAllTask();
+    }
+    @GetMapping("/getTaskByBoard/{boardId}")
+    @ResponseBody
+    public List<Task> getTaskByBoard(@PathVariable Long boardId) {
+        return taskService.getTasksByBoardId(boardId);
     }
 
 }

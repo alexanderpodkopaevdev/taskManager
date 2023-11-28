@@ -11,13 +11,15 @@ import java.util.List;
 
 @Service
 public class TaskServiceImpl implements TaskService{
-    private TaskRepository taskRepository;
+    private final TaskRepository taskRepository;
+    private final BoardRepository boardRepository;
 
-    public TaskServiceImpl(TaskRepository taskRepository) {
+    public TaskServiceImpl(TaskRepository taskRepository, BoardRepository boardRepository) {
         this.taskRepository = taskRepository;
+        this.boardRepository = boardRepository;
     }
     @Override
-    public List<Task> getAllBoards() {
+    public List<Task> getAllTask() {
         List<Task> result = new ArrayList<>();
         taskRepository.findAll().forEach(result::add);
         return result;
@@ -31,5 +33,10 @@ public class TaskServiceImpl implements TaskService{
     @Override
     public void getTaskById(long id) {
         taskRepository.findById(id);
+    }
+
+    @Override
+    public List<Task> getTasksByBoardId(long id) {
+        return taskRepository.findByBoard(boardRepository.findById(id).get());
     }
 }
