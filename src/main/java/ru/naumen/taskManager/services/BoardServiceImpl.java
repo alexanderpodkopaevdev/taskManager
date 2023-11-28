@@ -1,6 +1,7 @@
 package ru.naumen.taskManager.services;
 
 import ru.naumen.taskManager.models.Board;
+import ru.naumen.taskManager.repositories.BoardRepository;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -15,7 +16,8 @@ public class BoardServiceImpl implements BoardService{
     @Override
     public List<Board> getAllBoards() {
         List<Board> result = new ArrayList<>();
-        return repository.findAll();
+        repository.findAll().forEach(result::add);
+        return result;
     }
 
     @Override
