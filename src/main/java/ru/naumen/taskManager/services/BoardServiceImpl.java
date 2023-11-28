@@ -1,11 +1,13 @@
 package ru.naumen.taskManager.services;
 
+import org.springframework.stereotype.Service;
 import ru.naumen.taskManager.models.Board;
 import ru.naumen.taskManager.repositories.BoardRepository;
 
 import java.util.ArrayList;
 import java.util.List;
 
+@Service
 public class BoardServiceImpl implements BoardService{
 
     private BoardRepository repository;
