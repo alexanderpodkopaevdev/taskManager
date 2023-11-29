@@ -5,6 +5,7 @@ import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.security.core.userdetails.UserDetailsService;
 import org.springframework.security.core.userdetails.UsernameNotFoundException;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
+import org.springframework.stereotype.Service;
 import ru.naumen.taskManager.models.Board;
 import ru.naumen.taskManager.models.Role;
 import ru.naumen.taskManager.models.User;
@@ -15,19 +16,21 @@ import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
 
+@Service
 public class UserServiceImpl implements UserService, UserDetailsService {
-
+    @Autowired
     private UserRepository userRepository;
     @Autowired
     private RoleRepository roleRepository;
     @Autowired
     BCryptPasswordEncoder bCryptPasswordEncoder;
 
+    /*
     public UserServiceImpl(UserRepository userRepository){
         this.userRepository = userRepository;
     }
 
-
+*/
     @Override
     public boolean saveUser(User user) {
         User userFromDB = userRepository.findByUsername(user.getUsername());
