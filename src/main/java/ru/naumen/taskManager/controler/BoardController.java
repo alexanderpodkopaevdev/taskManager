@@ -10,6 +10,9 @@ import ru.naumen.taskManager.models.Task;
 import ru.naumen.taskManager.services.BoardService;
 import ru.naumen.taskManager.services.TaskService;
 
+import java.time.LocalDate;
+import java.time.ZoneId;
+import java.util.Date;
 import java.util.List;
 
 @RestController
@@ -47,6 +50,14 @@ public class BoardController {
         return getBoards();
     }
 
+    @GetMapping("/addTaskWithDate/{taskName}/{description}/{boardId}/{date}")
+    @ResponseBody
+    public List<Task> addTaskWithDate(@PathVariable String taskName, @PathVariable String description, @PathVariable Long boardId, @PathVariable String date) {
+        Task newTask = new Task(taskName, description, boardService.getBoardById(boardId), date);
+        taskService.saveTask(newTask);
+        return getTasks();
+    }
+
     @GetMapping("/allTasks")
     @ResponseBody
     public List<Task> getTasks() {
@@ -56,6 +67,13 @@ public class BoardController {
     @ResponseBody
     public List<Task> getTaskByBoard(@PathVariable Long boardId) {
         return taskService.getTasksByBoardId(boardId);
+    }
+
+    @GetMapping("/getTaskToday")
+    @ResponseBody
+    public List<Task> getTaskToday() {
+        return taskService.getTaskByDate(LocalDate.ofInstant(
+                new Date().toInstant(), ZoneId.systemDefault()));
     }
 
 }

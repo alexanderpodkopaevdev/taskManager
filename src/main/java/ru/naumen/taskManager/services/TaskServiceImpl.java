@@ -6,6 +6,7 @@ import ru.naumen.taskManager.models.Task;
 import ru.naumen.taskManager.repositories.BoardRepository;
 import ru.naumen.taskManager.repositories.TaskRepository;
 
+import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -39,5 +40,10 @@ public class TaskServiceImpl implements TaskService{
     @Override
     public List<Task> getTasksByBoardId(long id) {
         return taskRepository.findByBoard(boardRepository.findById(id).get());
+    }
+
+    @Override
+    public List<Task> getTaskByDate(LocalDate date) {
+        return taskRepository.findByDate(date);
     }
 }

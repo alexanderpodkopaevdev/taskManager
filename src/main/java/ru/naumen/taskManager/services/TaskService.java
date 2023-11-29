@@ -3,6 +3,7 @@ package ru.naumen.taskManager.services;
 import ru.naumen.taskManager.models.Board;
 import ru.naumen.taskManager.models.Task;
 
+import java.time.LocalDate;
 import java.util.List;
 
 public interface TaskService {
@@ -13,5 +14,7 @@ public interface TaskService {
     void getTaskById(long id);
 
     List<Task> getTasksByBoardId(long id);
+
+    List<Task> getTaskByDate(LocalDate date);
 
 }
