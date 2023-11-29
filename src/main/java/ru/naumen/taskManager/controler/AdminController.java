@@ -7,17 +7,18 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import ru.naumen.taskManager.services.UserService;
+import ru.naumen.taskManager.services.UserServiceImpl;
 
 @Controller
 public class AdminController {
 
     @Autowired
-    private UserService userService;
+    private UserServiceImpl userServiceImpl;
 
 
     @GetMapping("/admin")
     public String userList(Model model) {
-        model.addAttribute("allUsers", userService.allUsers());
+        model.addAttribute("allUsers", userServiceImpl.allUsers());
         return "admin";
     }
 
@@ -26,7 +27,7 @@ public class AdminController {
                               @RequestParam(required = true, defaultValue = "" ) String action,
                               Model model) {
         if (action.equals("delete")){
-            userService.deleteUser(userId);
+            userServiceImpl.deleteUser(userId);
         }
         return "redirect:/admin";
     }

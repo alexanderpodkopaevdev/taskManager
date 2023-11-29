@@ -18,19 +18,19 @@ import java.util.List;
 
 @Service
 public class UserServiceImpl implements UserService, UserDetailsService {
-    @Autowired
+
     private UserRepository userRepository;
     @Autowired
     private RoleRepository roleRepository;
     @Autowired
     BCryptPasswordEncoder bCryptPasswordEncoder;
 
-    /*
+
     public UserServiceImpl(UserRepository userRepository){
         this.userRepository = userRepository;
     }
 
-*/
+
     @Override
     public boolean saveUser(User user) {
         User userFromDB = userRepository.findByUsername(user.getUsername());
