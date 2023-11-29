@@ -11,4 +11,6 @@ public interface TaskRepository extends CrudRepository<Task, Long> {
     List<Task> findByBoard(Board board);
 
     List<Task> findByDate(LocalDate date);
+
+
 }
