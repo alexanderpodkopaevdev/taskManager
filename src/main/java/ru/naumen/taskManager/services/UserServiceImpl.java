@@ -33,7 +33,7 @@ public class UserServiceImpl implements UserService, UserDetailsService {
 
     @Override
     public boolean saveUser(User user) {
-        User userFromDB = userRepository.findByUsername(user.getUsername());
+        User userFromDB = userRepository.findByname(user.getUsername());
 
         if (userFromDB != null) {
             return false;
@@ -51,7 +51,7 @@ public class UserServiceImpl implements UserService, UserDetailsService {
 
     @Override
     public UserDetails loadUserByUsername(String username) throws UsernameNotFoundException {
-        User user = userRepository.findByUsername(username);
+        User user = userRepository.findByname(username);
 
         if (user == null) {
             throw new UsernameNotFoundException("User not found");
