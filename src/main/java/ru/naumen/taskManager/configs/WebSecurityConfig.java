@@ -16,8 +16,8 @@ import ru.naumen.taskManager.services.UserServiceImpl;
 @Configuration
 @EnableWebSecurity
 public class WebSecurityConfig{
-    /*
 
+/*
     @Autowired
     UserServiceImpl userServiceImpl;
 */
@@ -41,7 +41,7 @@ public class WebSecurityConfig{
         ).formLogin(Customizer.withDefaults());
         return http.build();
     }
-
+//TODO поменять роль @HASROLE ROLE
     /*
     @Autowired
     protected void configureGlobal(AuthenticationManagerBuilder auth) throws Exception {

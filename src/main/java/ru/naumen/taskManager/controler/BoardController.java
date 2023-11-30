@@ -27,7 +27,7 @@ public class BoardController {
         this.boardService = boardService;
         this.taskService = taskService;
     }
-
+    //TODO прочитать @ROLE
     @GetMapping("/allBoards")
     @ResponseBody
     public List<Board> getBoards() {
