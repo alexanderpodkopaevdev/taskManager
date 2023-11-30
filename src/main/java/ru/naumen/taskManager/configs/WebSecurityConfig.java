@@ -17,18 +17,19 @@ import ru.naumen.taskManager.services.UserServiceImpl;
 @EnableWebSecurity
 public class WebSecurityConfig{
     /*
+
     @Autowired
     UserServiceImpl userServiceImpl;
-    */
+*/
 
-    /*
+
     @Bean
     public BCryptPasswordEncoder bCryptPasswordEncoder() {
         return new BCryptPasswordEncoder();
     }
 
 
-     */
+
     @Bean
     public SecurityFilterChain filterChain(HttpSecurity http) throws Exception {
 
