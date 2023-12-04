@@ -27,10 +27,15 @@ public class UserServiceImpl implements UserService, UserDetailsService {
     BCryptPasswordEncoder bCryptPasswordEncoder;
 
 
-    public UserServiceImpl(UserRepository userRepository){
+/*    public UserServiceImpl(UserRepository userRepository){
         this.userRepository = userRepository;
-    }
+    }*/
 
+    public UserServiceImpl(UserRepository userRepository, RoleRepository roleRepository, BCryptPasswordEncoder bCryptPasswordEncoder) {
+        this.userRepository = userRepository;
+        this.roleRepository = roleRepository;
+        this.bCryptPasswordEncoder = bCryptPasswordEncoder;
+    }
 
     @Override
     public boolean saveUser(User user) {
@@ -47,8 +52,13 @@ public class UserServiceImpl implements UserService, UserDetailsService {
     }
 
     @Override
-    public void getUserById(long id) {
-        userRepository.findById(id);
+    public User getUserById(long id) {
+        return userRepository.findById(id).get();
+    }
+
+    @Override
+    public User getUserByName(String name) {
+        return userRepository.findByname(name);
     }
 
     @Override

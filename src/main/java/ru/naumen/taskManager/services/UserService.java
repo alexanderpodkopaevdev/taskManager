@@ -9,7 +9,9 @@ public interface UserService {
 
     boolean saveUser(User user);
 
-    void getUserById(long id);
+    User getUserById(long id);
+
+    User getUserByName(String name);
 
     List<User> allUsers();
 

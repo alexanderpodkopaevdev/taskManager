@@ -3,6 +3,7 @@ package ru.naumen.taskManager.services;
 import org.springframework.stereotype.Service;
 import ru.naumen.taskManager.models.Board;
 import ru.naumen.taskManager.models.Task;
+import ru.naumen.taskManager.models.User;
 import ru.naumen.taskManager.repositories.BoardRepository;
 import ru.naumen.taskManager.repositories.TaskRepository;
 
@@ -40,6 +41,11 @@ public class TaskServiceImpl implements TaskService{
     @Override
     public List<Task> getTasksByBoardId(long id) {
         return taskRepository.findByBoard(boardRepository.findById(id).get());
+    }
+
+    @Override
+    public List<Task> getTasksByUser(User user) {
+        return taskRepository.findByUser(user);
     }
 
     @Override

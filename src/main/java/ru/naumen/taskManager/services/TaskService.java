@@ -2,6 +2,7 @@ package ru.naumen.taskManager.services;
 
 import ru.naumen.taskManager.models.Board;
 import ru.naumen.taskManager.models.Task;
+import ru.naumen.taskManager.models.User;
 
 import java.time.LocalDate;
 import java.util.List;
@@ -14,6 +15,8 @@ public interface TaskService {
     void getTaskById(long id);
 
     List<Task> getTasksByBoardId(long id);
+
+    List<Task> getTasksByUser(User user);
 
     List<Task> getTaskByDate(LocalDate date);
 

@@ -20,18 +20,22 @@ public class Task {
     @ManyToOne
     private Board board;
     private LocalDate date;
+    @ManyToOne
+    private User user;
 
-    public Task(String taskName, String description, Board board) {
+    public Task(String taskName, String description, Board board, User user) {
         this.taskName = taskName;
         this.description = description;
         this.board = board;
+        this.user = user;
     }
 
-    public Task(String taskName, String description, Board board, String date) {
+    public Task(String taskName, String description, Board board, String date, User user) {
         this.taskName = taskName;
         this.description = description;
         this.board = board;
         this.date = LocalDate.parse(date);
+        this.user = user;
 
     }
     public Task() {
