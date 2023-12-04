@@ -4,6 +4,7 @@ package ru.naumen.taskManager.models;
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.Id;
+import jakarta.persistence.ManyToOne;
 import lombok.Data;
 
 @Entity
@@ -13,10 +14,12 @@ public class Board {
     @GeneratedValue
     private Long id;
     private String nameBoard;
+    @ManyToOne
+    private User user;
 
-
-    public Board(String nameBoard) {
+    public Board(User user, String nameBoard) {
         this.nameBoard = nameBoard;
+        this.user = user;
     }
 
     public Board() {

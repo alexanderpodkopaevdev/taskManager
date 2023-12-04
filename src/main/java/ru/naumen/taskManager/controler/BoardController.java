@@ -43,7 +43,7 @@ public class BoardController {
     @GetMapping("/addBoard/{boardName}")
     @ResponseBody
     public List<Board> addBoard(@PathVariable String boardName) {
-        Board newBoard = new Board(boardName);
+        Board newBoard = new Board(getCurrentUser(), boardName);
         boardService.saveBoard(newBoard);
         return getBoards();
     }
