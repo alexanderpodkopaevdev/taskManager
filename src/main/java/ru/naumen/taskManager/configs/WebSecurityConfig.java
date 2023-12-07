@@ -38,7 +38,8 @@ public class WebSecurityConfig{
                 .requestMatchers("/admin/**").hasRole("ADMIN")
                 .anyRequest().authenticated()
 
-        ).formLogin(Customizer.withDefaults());
+        ).formLogin(form ->form
+                .loginPage("/login").permitAll());
         return http.build();
     }
 //TODO поменять роль @HASROLE ROLE
