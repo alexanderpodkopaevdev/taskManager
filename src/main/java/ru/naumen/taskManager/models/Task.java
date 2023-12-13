@@ -7,6 +7,7 @@ import jakarta.persistence.ManyToOne;
 import lombok.Data;
 
 import java.time.LocalDate;
+import java.time.LocalDateTime;
 import java.util.Date;
 
 @Entity
@@ -19,7 +20,7 @@ public class Task {
     private String description;
     @ManyToOne
     private Board board;
-    private LocalDate date;
+    private LocalDateTime date;
     @ManyToOne
     private User user;
 
@@ -34,12 +35,16 @@ public class Task {
         this.taskName = taskName;
         this.description = description;
         this.board = board;
-        this.date = LocalDate.parse(date);
+        this.date = LocalDateTime.parse(date);
         this.user = user;
 
     }
     public Task() {
 
+    }
+
+    public LocalDateTime getDate() {
+        return date;
     }
 }
 //контекст

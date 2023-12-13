@@ -33,7 +33,7 @@ public class BoardController {
         this.taskService = taskService;
         this.userService = userService;
     }
-    //TODO прочитать @ROLE
+
     @GetMapping("/allBoards")
     @ResponseBody
     public List<Board> getBoards() {
