@@ -5,6 +5,7 @@ import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.Id;
 import jakarta.persistence.ManyToOne;
 import lombok.Data;
+import lombok.Getter;
 
 import java.time.LocalDate;
 import java.time.LocalDateTime;
@@ -20,7 +21,9 @@ public class Task {
     private String description;
     @ManyToOne
     private Board board;
+    @Getter
     private LocalDateTime date;
+    private Boolean notificationSend;
     @ManyToOne
     private User user;
 
@@ -29,6 +32,7 @@ public class Task {
         this.description = description;
         this.board = board;
         this.user = user;
+        this.notificationSend = false;
     }
 
     public Task(String taskName, String description, Board board, String date, User user) {
@@ -37,14 +41,12 @@ public class Task {
         this.board = board;
         this.date = LocalDateTime.parse(date);
         this.user = user;
+        this.notificationSend = false;
 
     }
     public Task() {
 
     }
 
-    public LocalDateTime getDate() {
-        return date;
-    }
 }
 //контекст
