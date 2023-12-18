@@ -1,34 +1,48 @@
 <!DOCTYPE html>
-<html xmlns="http://www.w3.org/1999/xhtml" xmlns:th="https://www.thymeleaf.org"
-      xmlns:sec="https://www.thymeleaf.org/thymeleaf-extras-springsecurity3">
-<head>
-</head>
+<html xmlns:th="http://www.thymeleaf.org" lang="ru">
+<head th:replace="~{fragments/head :: head}"></head>
 <body>
 <div class="container">
-  <div class="body">
-    <h2>Вход</h2>
-    <div class="form">
-      <form th:action="@{/login}" method="post">
-        <p class="fw-normal">Пожалуйста, авторизуйтесь</p>
-        <div th:if="${param.error}">
-          Invalid username and password.
+  <div class="row">
+    <div class="col-sm-9 col-md-7 col-lg-5 mx-auto">
+      <div class="card border-0 shadow rounded-3 my-5">
+        <div class="card-body p-4 p-sm-5">
+          <h5 class="card-title text-center mb-5 fw-light fs-5">Пожалуйста, авторизуйтесь</h5>
+          <form th:action="@{/login}" method="post">
+            <div th:if="${param.error}">
+              Неверный логин или пароль.
+            </div>
+            <div th:if="${param.logout}">
+              Вы вышли из системы.
+            </div>
+            <div class="form-floating mb-3">
+              <input type="email" class="form-control" id="floatingInput" placeholder="name@example.com" name="username">
+              <label for="floatingInput">Ваш Email</label>
+            </div>
+            <div class="form-floating mb-3">
+              <input type="password" class="form-control" id="floatingPassword" placeholder="Password" name="password">
+              <label for="floatingPassword">Пароль</label>
+            </div>
+
+            <div class="form-check mb-3">
+              <input class="form-check-input" type="checkbox" value="" id="rememberPasswordCheck">
+              <label class="form-check-label" for="rememberPasswordCheck">
+                Запомнить пароль
+              </label>
+            </div>
+            <div class="d-grid">
+              <button class="btn btn-primary btn-login text-uppercase fw-bold" type="submit">Войти</button>
+            </div>
+            <hr class="my-4">
+            <div class="text-center">
+            <div>
+              <p class="mb-0">Нет аккаунта? <a th:href="registration" class="text-black-50 fw-bold">Зарегистрироваться</a>
+              </p>
+            </div>
+            </div>
+          </form>
         </div>
-        <div th:if="${param.logout}">
-          Вы вышли из системы.
-        </div>
-        <div class="form-control">
-          <input type="text" placeholder="Ваш Email:" name="username">
-        </div>
-        <div class="form-control">
-          <input type="password" placeholder="Ваш пароль:" name="password">
-        </div>
-        <div class="form-control">
-          <input type="checkbox" value="remember-me"> Запомнить меня
-        </div>
-        <div class="form-control">
-          <button class="button" type="submit">Войти</button>
-        </div>
-      </form>
+      </div>
     </div>
   </div>
 </div>

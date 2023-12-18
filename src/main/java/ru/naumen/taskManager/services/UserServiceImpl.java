@@ -87,3 +87,4 @@ public class UserServiceImpl implements UserService, UserDetailsService {
         return false;
     }
 }
+//брокер очередей
