@@ -45,10 +45,5 @@ public class Task {
 
     }
     public Task() {
-
     }
-
-
-
 }
-//контекст

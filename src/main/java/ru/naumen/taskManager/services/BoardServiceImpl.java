@@ -2,6 +2,7 @@ package ru.naumen.taskManager.services;
 
 import org.springframework.stereotype.Service;
 import ru.naumen.taskManager.models.Board;
+import ru.naumen.taskManager.models.User;
 import ru.naumen.taskManager.repositories.BoardRepository;
 
 import java.util.ArrayList;
@@ -30,5 +31,14 @@ public class BoardServiceImpl implements BoardService{
     @Override
     public Board getBoardById(long id) {
         return repository.findById(id).get();
+    }
+
+    @Override
+    public List<Board> getBoardsByUser(User user) {
+        if (user.getRoles().stream().anyMatch(i -> i.getName().equals("admin"))) {
+            return getAllBoards();
+        } else {
+            return repository.findByUser(user);
+        }
     }
 }
