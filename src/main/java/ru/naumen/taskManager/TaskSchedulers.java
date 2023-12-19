@@ -26,6 +26,7 @@ public class TaskSchedulers {
     public void checkTaskTimes() {
         List<Task> tasks = taskService.getAllTask();
         for (Task task : tasks) {
+            System.out.println(task.getNotificationSend());
             if (!task.getNotificationSend()) {
                 if (shouldExecuteTask(task.getDate())) {
                     executeTaskAction(task);
@@ -39,15 +40,14 @@ public class TaskSchedulers {
         String chatId = task.getUser().getTgID();
         if (chatId != null) {
             System.out.println("chat id " + chatId);
-            String message = "1";// + task.getTaskName();
+            String message =  "Пришло время задачи " + task.getTaskName() + "\nОписание: " + task.getDescription();
             tgBot.sendNotification(chatId, message);
-            //task.setNotificationSend(true);
-            //System.out.println("Выполнение действия с задачей: " + task.getId());
+            task.setNotificationSend(true);
+            taskService.saveTask(task);
         }
     }
 
     private boolean shouldExecuteTask(LocalDateTime taskTime) {
-        //TODO скорректировать проверку времени
         if (taskTime != null) {
             LocalDateTime currentTime = LocalDateTime.now();
             return currentTime.isAfter(taskTime);

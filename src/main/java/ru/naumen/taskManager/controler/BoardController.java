@@ -91,4 +91,5 @@ public class BoardController {
         return userService.getUserByName(currentPrincipalName);
     }
 
+
 }

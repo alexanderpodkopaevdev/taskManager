@@ -39,7 +39,7 @@ public class TgBot extends TelegramLongPollingBot {
 
     public void sendNotification(String chatId, String message) {
         SendMessage sendMessage = new SendMessage();
-        sendMessage.setChatId(460634452L);
+        sendMessage.setChatId(chatId);
         sendMessage.setText(message);
         System.out.println(sendMessage.toString());
         try {
