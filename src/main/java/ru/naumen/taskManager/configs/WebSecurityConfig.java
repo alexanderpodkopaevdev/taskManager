@@ -37,10 +37,13 @@ public class WebSecurityConfig{
                         .requestMatchers("/registration").permitAll()
                 .requestMatchers("/admin/**").hasRole("ADMIN")
                 .requestMatchers("/*.css").permitAll()
+                .requestMatchers("/dashboard").permitAll()
                 .anyRequest().authenticated()
 
         ).formLogin(form ->form
-                .loginPage("/login").permitAll());
+                .loginPage("/login").defaultSuccessUrl("/dashboard",true).permitAll()
+                 )
+                .logout((logout) -> logout.logoutSuccessUrl("/login?logout"));
         return http.build();
     }
 //TODO поменять роль @HASROLE ROLE
