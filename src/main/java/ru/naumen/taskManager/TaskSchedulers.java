@@ -27,7 +27,7 @@ public class TaskSchedulers {
         List<Task> tasks = taskService.getAllTask();
         for (Task task : tasks) {
             System.out.println(task.getNotificationSend());
-            if (!task.getNotificationSend()) {
+            if (task.getNotificationSend() != null && !task.getNotificationSend()) {
                 if (shouldExecuteTask(task.getDate())) {
                     executeTaskAction(task);
                 }

@@ -1,8 +1,11 @@
 package ru.naumen.taskManager.controler;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.access.annotation.Secured;
 import org.springframework.security.core.Authentication;
 import org.springframework.security.core.context.SecurityContextHolder;
+import org.springframework.stereotype.Controller;
+import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.ResponseBody;
@@ -19,7 +22,7 @@ import java.time.ZoneId;
 import java.util.Date;
 import java.util.List;
 
-@RestController
+@Controller
 public class BoardController {
 
     private final BoardService boardService;
@@ -38,6 +41,12 @@ public class BoardController {
     @ResponseBody
     public List<Board> getBoards() {
         return boardService.getAllBoards();
+    }
+
+    @GetMapping("/dashboard")
+    public String getAllBoards(Model model) {
+        model.addAttribute("boards", boardService.getBoardsByUser(getCurrentUser()));
+        return "dashboard";
     }
 
     @GetMapping("/addBoard/{boardName}")
@@ -71,10 +80,17 @@ public class BoardController {
         return taskService.getTasksByUser(getCurrentUser());
         //return taskService.getAllTask();
     }
+
     @GetMapping("/getTaskByBoard/{boardId}")
     @ResponseBody
     public List<Task> getTaskByBoard(@PathVariable Long boardId) {
         return taskService.getTasksByBoardId(boardId);
+    }
+
+    @GetMapping("/getTasksByBoard/{boardId}")
+    public String getTaskByBoard(@PathVariable Long boardId, Model model) {
+        model.addAttribute("tasks", taskService.getTasksByBoardId(boardId));
+        return "task_dashboard";
     }
 
     @GetMapping("/getTaskToday")

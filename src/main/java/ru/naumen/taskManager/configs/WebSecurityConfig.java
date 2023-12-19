@@ -1,5 +1,6 @@
 package ru.naumen.taskManager.configs;
 
+import nz.net.ultraq.thymeleaf.LayoutDialect;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
@@ -38,6 +39,7 @@ public class WebSecurityConfig{
                 .requestMatchers("/admin/**").hasRole("ADMIN")
                 .requestMatchers("/*.css").permitAll()
                 .requestMatchers("/dashboard").permitAll()
+                .requestMatchers("/fragments/**").permitAll()
                 .anyRequest().authenticated()
 
         ).formLogin(form ->form
@@ -55,4 +57,8 @@ public class WebSecurityConfig{
     }
     */
 
+    @Bean
+    public LayoutDialect layoutDialect() {
+        return new LayoutDialect();
+    }
 }
