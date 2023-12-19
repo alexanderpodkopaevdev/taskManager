@@ -1,13 +1,18 @@
 package ru.naumen.taskManager;
-import jakarta.annotation.PostConstruct;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Component;
 import org.telegram.telegrambots.bots.TelegramLongPollingBot;
 import org.telegram.telegrambots.meta.api.methods.send.SendMessage;
-import org.telegram.telegrambots.meta.api.methods.updates.SetWebhook;
 import org.telegram.telegrambots.meta.api.objects.Update;
 import org.telegram.telegrambots.meta.exceptions.TelegramApiException;
+import ru.naumen.taskManager.models.Board;
+import ru.naumen.taskManager.models.Task;
+import ru.naumen.taskManager.services.BoardService;
+import ru.naumen.taskManager.services.TaskService;
+import ru.naumen.taskManager.services.UserService;
+
+import java.util.List;
 
 @Component
 public class TgBot extends TelegramLongPollingBot {
@@ -17,6 +22,13 @@ public class TgBot extends TelegramLongPollingBot {
     @Value("${telegram.bot.name}")
     private String botName;
 
+    @Autowired
+    private TaskService taskService;
+    @Autowired
+    private UserService userService;
+
+    @Autowired
+    private BoardService boardService;
 
     @Override
     public void onUpdateReceived(Update update) {
@@ -25,6 +37,12 @@ public class TgBot extends TelegramLongPollingBot {
             String message = update.getMessage().getText().trim();
             String chatId = update.getMessage().getChatId().toString();
 
+            if (message.equals("my task")) {
+                getAllTasks(chatId);
+            }
+            if (message.equals("my board")) {
+                getAllBoards(chatId);
+            }
             SendMessage sm = new SendMessage();
             sm.setChatId(chatId);
             sm.setText(message);
@@ -35,7 +53,24 @@ public class TgBot extends TelegramLongPollingBot {
                 //todo add logging to the project.
                 e.printStackTrace();
             }
-        }    }
+        }
+    }
+
+    private void getAllTasks(String chatId) {
+        List<Task> tasks = taskService.getTasksByUser(userService.getUserByTgId(chatId));
+        for (Task task : tasks) {
+            String message =  task.getId() + "\nТема: " + task.getTaskName() + "\nОписание: " + task.getDescription();
+            sendNotification(chatId, message);
+        }
+    }
+
+    private void getAllBoards(String chatId) {
+        List<Board> boards = boardService.getBoardsByUser(userService.getUserByTgId(chatId));
+        for (Board board : boards) {
+            String message =  board.getId() + "\nНазвание: " + board.getNameBoard();
+            sendNotification(chatId, message);
+        }
+    }
 
     public void sendNotification(String chatId, String message) {
         SendMessage sendMessage = new SendMessage();

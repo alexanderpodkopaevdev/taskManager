@@ -45,7 +45,11 @@ public class TaskServiceImpl implements TaskService{
 
     @Override
     public List<Task> getTasksByUser(User user) {
-        return taskRepository.findByUser(user);
+        if (user.getRoles().stream().anyMatch(i -> i.getName().equals("admin"))) {
+            return getAllTask();
+        } else {
+            return taskRepository.findByUser(user);
+        }
     }
 
     @Override

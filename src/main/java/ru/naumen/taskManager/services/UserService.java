@@ -17,4 +17,6 @@ public interface UserService {
 
     boolean deleteUser(long id);
 
+    User getUserByTgId(String tgId);
+
 }

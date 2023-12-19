@@ -5,4 +5,6 @@ import ru.naumen.taskManager.models.User;
 
 public interface UserRepository extends CrudRepository<User, Long> {
     User findByname(String name);
+
+    User findByTgID(String tgID);
 }

@@ -86,5 +86,10 @@ public class UserServiceImpl implements UserService, UserDetailsService {
         }
         return false;
     }
+
+    @Override
+    public User getUserByTgId(String tgId) {
+        return userRepository.findByTgID(tgId);
+    }
 }
 //брокер очередей
