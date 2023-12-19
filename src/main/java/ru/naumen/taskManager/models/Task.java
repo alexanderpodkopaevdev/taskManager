@@ -1,9 +1,6 @@
 package ru.naumen.taskManager.models;
 
-import jakarta.persistence.Entity;
-import jakarta.persistence.GeneratedValue;
-import jakarta.persistence.Id;
-import jakarta.persistence.ManyToOne;
+import jakarta.persistence.*;
 import lombok.Data;
 import lombok.Getter;
 
@@ -27,12 +24,16 @@ public class Task {
     @ManyToOne
     private User user;
 
+    @Enumerated(EnumType.STRING)
+    private State state;
+
     public Task(String taskName, String description, Board board, User user) {
         this.taskName = taskName;
         this.description = description;
         this.board = board;
         this.user = user;
         this.notificationSend = false;
+        this.state = State.CREATED;
     }
 
     public Task(String taskName, String description, Board board, String date, User user) {
@@ -42,6 +43,7 @@ public class Task {
         this.date = LocalDateTime.parse(date);
         this.user = user;
         this.notificationSend = false;
+        this.state = State.CREATED;
 
     }
     public Task() {

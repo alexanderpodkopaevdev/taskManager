@@ -2,6 +2,7 @@ package ru.naumen.taskManager.services;
 
 import org.springframework.stereotype.Service;
 import ru.naumen.taskManager.models.Board;
+import ru.naumen.taskManager.models.State;
 import ru.naumen.taskManager.models.Task;
 import ru.naumen.taskManager.models.User;
 import ru.naumen.taskManager.repositories.BoardRepository;
@@ -55,5 +56,17 @@ public class TaskServiceImpl implements TaskService{
     @Override
     public List<Task> getTaskByDate(LocalDate date) {
         return taskRepository.findByDate(date);
+    }
+
+    @Override
+    public void updateState(Task task, State state) {
+        task.setState(state);
+        saveTask(task);
+    }
+
+    @Override
+    public void editTask(Task task) {
+        //TODO edit
+        saveTask(task);
     }
 }

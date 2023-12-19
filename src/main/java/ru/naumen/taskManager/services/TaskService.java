@@ -1,6 +1,7 @@
 package ru.naumen.taskManager.services;
 
 import ru.naumen.taskManager.models.Board;
+import ru.naumen.taskManager.models.State;
 import ru.naumen.taskManager.models.Task;
 import ru.naumen.taskManager.models.User;
 
@@ -19,5 +20,9 @@ public interface TaskService {
     List<Task> getTasksByUser(User user);
 
     List<Task> getTaskByDate(LocalDate date);
+
+    void updateState(Task task, State state);
+
+    void editTask(Task task);
 
 }
