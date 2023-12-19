@@ -1,10 +1,17 @@
 <!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <title>Title</title>
-</head>
-<body>
+<html xmlns:th="http://www.thymeleaf.org" lang="ru" xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout">
 
+<head th:replace="~{fragments/head :: head}"></head>
+<body>
+<div id="app"><!--Main content-->
+    <span th:replace="~{fragments::sidebar}"></span>
+    <div id="main"><!--Content id-->
+        <span th:replace="~{fragments :: header}"></span>
+        <div class="main-content container-fluid" layout:fragment="content">
+
+        </div>
+        <span th:replace="fragments/footer::footer"></span>
+    </div>
+</div>
 </body>
 </html>
