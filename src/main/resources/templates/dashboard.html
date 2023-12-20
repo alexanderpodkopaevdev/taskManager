@@ -1,28 +1,29 @@
 <!DOCTYPE html>
 <html xmlns:th="http://www.thymeleaf.org" lang="ru" xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout">
-
 <head th:replace="~{fragments/head :: head}"></head>
 <body>
 <div id="app"><!--Main content-->
-<!--   <span th:replace="~{fragments/sidebar :: sidebar}"></span> -->
     <div id="main"><!--Content id-->
         <span th:replace="~{fragments/header :: header}"></span>
-        <div class="main-content container-fluid" layout:fragment="content">
+          <div class="main-content container-fluid" layout:fragment="content">
 
 
-        </div>
-    </div>
-</div>
-<table class="table table-bordered">
-    <tr class="table-secondary">
-        <th>ID</th>
-    </tr>
-    <tr th:each="board : ${boards}">
-        <td class="align-middle" th:text="${board.getId()}"></td>
-        <td>
-            <a th:href="@{/getTasksByBoard/{id}(id=${board.getId()})}" th:text="${board.getNameBoard()}"></a>
-        </td>
-    </tr>
-</table>
+          </div>
+      </div>
+  </div>
+
+  <table class="table table-bordered">
+      <tr class="table-secondary">
+          <th>ID</th>
+      </tr>
+      <tr th:each="board : ${boards}">
+          <td class="align-middle" th:text="${board.getId()}"></td>
+          <td>
+              <a th:href="@{/getTasksByBoard/{id}(id=${board.getId()})}" th:text="${board.getNameBoard()}"></a>
+          </td>
+      </tr>
+
+  </table>
+
 </body>
 </html>

@@ -6,19 +6,20 @@
       xmlns:sec="http://www.thymeleaf.org/extras/spring-security">
 <body>
 <div class="main-content container-fluid" layout:fragment="content">
-    <table class="table table-bordered">
-        <tr class="table-secondary">
-            <th>ID</th>
-        </tr>
-        <tr th:each="task : ${tasks}">
-            <td class="align-middle" th:text="${task.getId()}"></td>
-            <td class="align-middle" th:text="${task.getTaskName()}"></td>
-            <td class="align-middle" th:text="${task.getDescription()}"></td>
-            <td class="align-middle" th:text="${task.getState()}"></td>
-            <td class="align-middle" th:text="${task.getDate()}"></td>
-        </tr>
-    </table>
-
+    <div class="col py-3">
+        <table class="table table-bordered">
+            <tr class="table-secondary">
+                <th>ID</th>
+            </tr>
+            <tr th:each="task : ${tasks}">
+                <td class="align-middle" th:text="${task.getId()}"></td>
+                <td class="align-middle" th:text="${task.getTaskName()}"></td>
+                <td class="align-middle" th:text="${task.getDescription()}"></td>
+                <td class="align-middle" th:text="${task.getState()}"></td>
+                <td class="align-middle" th:text="${task.getDate()}"></td>
+            </tr>
+        </table>
+    </div>
 </div>
 </body>
 </html>

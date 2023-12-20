@@ -31,7 +31,7 @@ public class RegistrationController {
             return "registration";
         }
 
-        return "redirect:/task_dashboard";
+        return "redirect:/dashboard";
     }
 }
 

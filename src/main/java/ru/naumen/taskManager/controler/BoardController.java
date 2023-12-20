@@ -6,10 +6,7 @@ import org.springframework.security.core.Authentication;
 import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.ResponseBody;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 import ru.naumen.taskManager.models.Board;
 import ru.naumen.taskManager.models.Task;
 import ru.naumen.taskManager.models.User;
@@ -47,6 +44,18 @@ public class BoardController {
     public String getAllBoards(Model model) {
         model.addAttribute("boards", boardService.getBoardsByUser(getCurrentUser()));
         return "dashboard";
+    }
+
+    @GetMapping("/addDashboard")
+    public String addBoard(Model model){
+        model.addAttribute("boardForm", new Board());
+        return "addDashboard";
+    }
+
+    @PostMapping("addDashboard")
+    public String addBoard(@ModelAttribute("boardForm") Board boardForm, Model model){
+        boardService.saveBoard(boardForm);
+        return "redirect:/dashboard";
     }
 
     @GetMapping("/addBoard/{boardName}")
