@@ -48,7 +48,6 @@ public class WebSecurityConfig{
                 .logout((logout) -> logout.logoutSuccessUrl("/login?logout"));
         return http.build();
     }
-//TODO поменять роль @HASROLE ROLE
     /*
     @Autowired
     protected void configureGlobal(AuthenticationManagerBuilder auth) throws Exception {

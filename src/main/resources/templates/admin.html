@@ -3,6 +3,7 @@
       layout:decorate="~{dashboard}"
       xmlns:sec="http://www.thymeleaf.org/extras/spring-security">
 <body>
+<div class="main-content container-fluid" layout:fragment="content">
 <table class="table">
     <thead>
     <tr>
@@ -17,10 +18,18 @@
         <th scope="row" th:text="${user.getId()}"></th>
         <td th:text="${user.getName()}"></td>
         <td th:text="${user.getEmail()}"></td>
-        <td ></td>
+        <td>
+            <form th:action="@{/admin}" method="post" >
+                <input type="hidden" name="userId" th:value="${user.getId()}"/>
+                <input type="hidden" name="action" value="delete"/>
+                <button type="submit">Delete</button>
+            </form>
+        </td>
+
     </tr>
     <tr>
     </tbody>
 </table>
+</div>
 </body>
 </html>
