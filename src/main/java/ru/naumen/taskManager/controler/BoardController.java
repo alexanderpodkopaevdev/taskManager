@@ -137,4 +137,11 @@ public class BoardController {
         return "redirect:/dashboard";
     }
 
+    @PostMapping("editTask")
+    public String editTask(@ModelAttribute("taskForm") Task taskForm){
+        taskForm.setUser(getCurrentUser());
+        taskService.saveTask(taskForm);
+        return "redirect:/dashboard";
+    }
+
 }
