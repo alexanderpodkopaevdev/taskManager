@@ -1,7 +1,6 @@
 package ru.naumen.taskManager.controler;
 
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.security.access.annotation.Secured;
 import org.springframework.security.core.Authentication;
 import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.stereotype.Controller;
@@ -99,6 +98,7 @@ public class BoardController {
 
     @GetMapping("/getTasksByBoard/{boardId}")
     public String getTaskByBoard(@PathVariable Long boardId, Model model) {
+        model.addAttribute("board", boardId);
         model.addAttribute("tasks", taskService.getTasksByBoardId(boardId));
         return "task_dashboard";
     }
@@ -122,6 +122,19 @@ public class BoardController {
         taskService.deleteTask(taskId);
         model.addAttribute("tasks", taskService.getTasksByBoardId(boardId));
         return "task_dashboard";
+    }
+
+    @GetMapping("/addTask/{boardId}")
+    public String addTask(@PathVariable Long boardId, Model model){
+        model.addAttribute("taskForm", new Task(boardService.getBoardById(boardId)));
+        return "/addTask";
+    }
+
+    @PostMapping("addTask")
+    public String addTask(@ModelAttribute("taskForm") Task taskForm){
+        taskForm.setUser(getCurrentUser());
+        taskService.saveTask(taskForm);
+        return "redirect:/dashboard";
     }
 
 }

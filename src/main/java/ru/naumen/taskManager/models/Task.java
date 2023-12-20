@@ -48,4 +48,8 @@ public class Task {
     }
     public Task() {
     }
+
+    public Task(Board board) {
+        this.board = board;
+    }
 }
