@@ -47,12 +47,12 @@ public class BoardController {
 
     @GetMapping("/addDashboard")
     public String addBoard(Model model){
-        model.addAttribute("boardForm", new Board(getCurrentUser()));
+        model.addAttribute("boardForm", new Board());
         return "addDashboard";
     }
 
-    @PostMapping("addDashboard")
-    public String addBoard(@ModelAttribute("boardForm") Board boardForm, Model model){
+    @PostMapping("/addDashboard")
+    public String addBoard(@ModelAttribute("boardForm") Board boardForm){
         boardForm.setUser(getCurrentUser());
         boardService.saveBoard(boardForm);
         return "redirect:/dashboard";
