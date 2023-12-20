@@ -14,11 +14,13 @@
             <label for="exampleFormControlInput1">name</label>
             <input type="hidden" id="id" name="id" th:field="*{board}">
             <input type="text" class="form-control" id="exampleFormControlInput1" th:field="*{taskName}" name="taskName">
-            <input type="text" class="form-control" id="exampleFormControlInput1" th:field="*{description}" name="description">
+            <input type="text" class="form-control" id="exampleFormControlInput2" th:field="*{description}" name="description">
+            <input type="datetime-local" class="form-control" id="exampleFormControlInput3" th:field="*{date}" name="date">
         </div>
         <div class="d-grid">
             <button class="btn btn-primary btn-login text-uppercase fw-bold" type="submit">Сохранить</button>
         </div>
     </form>
 </div>
+
 </body>
