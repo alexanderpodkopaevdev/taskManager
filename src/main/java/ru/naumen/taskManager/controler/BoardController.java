@@ -54,6 +54,7 @@ public class BoardController {
 
     @PostMapping("addDashboard")
     public String addBoard(@ModelAttribute("boardForm") Board boardForm, Model model){
+        boardForm.setUser(getCurrentUser());
         boardService.saveBoard(boardForm);
         return "redirect:/dashboard";
     }

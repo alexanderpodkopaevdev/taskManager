@@ -7,23 +7,24 @@
         <span th:replace="~{fragments/header :: header}"></span>
           <div class="main-content container-fluid" layout:fragment="content">
 
+              <table class="table table-bordered">
+                  <tr class="table-secondary">
+                      <th>ID</th>
+                  </tr>
+                  <tr th:each="board : ${boards}">
+                      <td class="align-middle" th:text="${board.getId()}"></td>
+                      <td>
+                          <a th:href="@{/getTasksByBoard/{id}(id=${board.getId()})}" th:text="${board.getNameBoard()}"></a>
+                      </td>
+                  </tr>
+
+              </table>
 
           </div>
       </div>
   </div>
 
-  <table class="table table-bordered">
-      <tr class="table-secondary">
-          <th>ID</th>
-      </tr>
-      <tr th:each="board : ${boards}">
-          <td class="align-middle" th:text="${board.getId()}"></td>
-          <td>
-              <a th:href="@{/getTasksByBoard/{id}(id=${board.getId()})}" th:text="${board.getNameBoard()}"></a>
-          </td>
-      </tr>
 
-  </table>
 
 </body>
 </html>
