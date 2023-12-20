@@ -48,7 +48,7 @@ public class BoardController {
 
     @GetMapping("/addDashboard")
     public String addBoard(Model model){
-        model.addAttribute("boardForm", new Board());
+        model.addAttribute("boardForm", new Board(getCurrentUser()));
         return "addDashboard";
     }
 

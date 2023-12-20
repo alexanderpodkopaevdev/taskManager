@@ -22,6 +22,10 @@ public class Board {
         this.user = user;
     }
 
+    public Board(User user) {
+        this.nameBoard = nameBoard;
+        this.user = user;
+    }
     public Board() {
 
     }
