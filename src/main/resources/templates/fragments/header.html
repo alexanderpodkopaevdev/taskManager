@@ -1,5 +1,7 @@
 <!DOCTYPE html>
-<html xmlns:th="http://www.thymeleaf.org" lang="ru">
+
+<html xmlns:th="http://www.thymeleaf.org" lang="ru" xmlns:sec="http://www.thymeleaf.org/extras/spring-security">
+<meta charset="UTF-8">
 <body>
 <nav class="navbar navbar-expand-lg navbar-dark bg-dark" th:fragment="header">
     <a class="navbar-brand" th:href="@{/dashboard}">TimeMaster</a>
@@ -11,7 +13,8 @@
                <!--<li class="nav-item active">
                    <a class="nav-link" href="#">Home <span class="sr-only">(current)</span></a>
                </li>-->
-               <li class="nav-item">
+
+               <li class="nav-item" sec:authorize="hasRole('ROLE_ADMIN')">
                    <a class="nav-link" th:href="admin">Admin</a>
                </li>
                <li class="nav-item dropdown">
@@ -20,14 +23,20 @@
                    </a>
                    <div class="dropdown-menu" aria-labelledby="navbarDropdown">
                        <th:block th:if="${#lists.isEmpty(boards)}">
-                           <a class="dropdown-item"th:href="addDashboard" >add board</a>
+                           <a class="dropdown-item"th:href="@{/addDashboard}" >add board</a>
                        </th:block>
                        <a class="dropdown-item" th:each="board : ${boards}" th:text="${board.getNameBoard()}" th:href="@{/getTasksByBoard/{id}(id=${board.getId()})}">Action</a>
                    </div>
                </li>
 
+
                <li class="nav-item">
-                   <a class="nav-link disabled" href="#">Disabled</a>
+                   <form th:action="@{/logout}" id="form" method="post" sec:authorize="isAuthenticated()">
+                       <input type="submit" style="display:none;"/>
+                   </form>
+                   <a class="nav-link d-flex align-items-center gap-2" href="/logout" onclick="event.preventDefault();document.getElementById('form').submit()" sec:authorize="isAuthenticated()">
+                       Logout
+                   </a>
                </li>
            </ul>
        </div>
