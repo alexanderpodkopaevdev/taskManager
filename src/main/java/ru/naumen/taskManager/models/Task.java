@@ -47,9 +47,13 @@ public class Task {
 
     }
     public Task() {
+        this.notificationSend = false;
+        this.state = State.CREATED;
     }
 
     public Task(Board board) {
         this.board = board;
+        this.notificationSend = false;
+        this.state = State.CREATED;
     }
 }

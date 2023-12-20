@@ -10,6 +10,7 @@
               <table class="table table-bordered">
                   <tr class="table-secondary">
                       <th>ID</th>
+                      <th>Title</th>
                   </tr>
                   <tr th:each="board : ${boards}">
                       <td class="align-middle" th:text="${board.getId()}"></td>
