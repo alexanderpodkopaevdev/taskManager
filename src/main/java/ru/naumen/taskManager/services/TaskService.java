@@ -13,7 +13,7 @@ public interface TaskService {
 
     void saveTask(Task task);
 
-    void getTaskById(long id);
+    Task getTaskById(long id);
 
     List<Task> getTasksByBoardId(long id);
 

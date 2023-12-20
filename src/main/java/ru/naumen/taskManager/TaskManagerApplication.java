@@ -18,12 +18,13 @@ public class TaskManagerApplication {
 	public static void main(String[] args) {
 		context = SpringApplication.run(TaskManagerApplication.class, args);
 
-		try {
+
+		/*try {
 			TelegramBotsApi api = new TelegramBotsApi(DefaultBotSession.class);
 			api.registerBot(context.getBean("tgBot", TelegramLongPollingBot.class));
 		} catch (TelegramApiException e) {
 			e.printStackTrace();
-		}
+		}*/
 
 	}
 

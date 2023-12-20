@@ -16,7 +16,13 @@
                       <td>
                           <a th:href="@{/getTasksByBoard/{id}(id=${board.getId()})}" th:text="${board.getNameBoard()}"></a>
                       </td>
+
+                      <td class="align-middle">
+                          <a th:href="@{/editDashboard/{id}(id=${board.getId()})}"><i class="bi bi-pencil-square"></i></a>
+                          <a th:href="@{/deleteBoard/{id}(id=${board.getId()})}" onclick="return confirm('Вы уверены?')"><i class="bi bi-trash" style="color:#ff000085"></i></a>
+                      </td>
                   </tr>
+
 
               </table>
               <a class="btn btn-secondary" role="button" th:href="@{/addDashboard}">Добавить доску</a>

@@ -137,6 +137,11 @@ public class BoardController {
         return "redirect:/dashboard";
     }
 
+    @GetMapping("/editTask/{taskId}")
+    public String editTask(@PathVariable Long taskId, Model model){
+        model.addAttribute("taskForm", taskService.getTaskById(taskId));
+        return "/editTask";
+    }
     @PostMapping("editTask")
     public String editTask(@ModelAttribute("taskForm") Task taskForm){
         taskForm.setUser(getCurrentUser());
@@ -144,4 +149,22 @@ public class BoardController {
         return "redirect:/dashboard";
     }
 
+    @GetMapping("/editDashboard/{boardId}")
+    public String editDashboard(@PathVariable Long boardId, Model model){
+        model.addAttribute("boardForm", boardService.getBoardById(boardId));
+        return "/editBoard";
+    }
+
+    @PostMapping("editDashboard")
+    public String editDashboard(@ModelAttribute("boardForm") Board boardForm){
+        boardForm.setUser(getCurrentUser());
+        boardService.saveBoard(boardForm);
+        return "redirect:/dashboard";
+    }
+
+    @GetMapping("/deleteBoard/{boardId}")
+    public String deleteBoard(@PathVariable Long boardId, Model model) {
+        boardService.deleteBoardById(boardId);
+        return "redirect:/dashboard";
+    }
 }

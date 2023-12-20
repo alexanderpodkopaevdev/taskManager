@@ -41,4 +41,9 @@ public class BoardServiceImpl implements BoardService{
             return repository.findByUser(user);
         }
     }
+
+    @Override
+    public void deleteBoardById(long id) {
+        repository.deleteById(id);
+    }
 }
