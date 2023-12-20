@@ -69,4 +69,9 @@ public class TaskServiceImpl implements TaskService{
         //TODO edit
         saveTask(task);
     }
+
+    @Override
+    public void deleteTask(Long taskId) {
+        taskRepository.deleteById(taskId);
+    }
 }

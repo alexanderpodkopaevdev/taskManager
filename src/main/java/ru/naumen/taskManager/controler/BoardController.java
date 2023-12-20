@@ -117,5 +117,11 @@ public class BoardController {
         return userService.getUserByName(currentPrincipalName);
     }
 
+    @GetMapping("/deleteTask/{boardId}/{taskId}")
+    public String getTaskByBoard(@PathVariable Long boardId, @PathVariable Long taskId, Model model) {
+        taskService.deleteTask(taskId);
+        model.addAttribute("tasks", taskService.getTasksByBoardId(boardId));
+        return "task_dashboard";
+    }
 
 }

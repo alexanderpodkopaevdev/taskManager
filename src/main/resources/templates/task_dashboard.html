@@ -17,6 +17,10 @@
                 <td class="align-middle" th:text="${task.getDescription()}"></td>
                 <td class="align-middle" th:text="${task.getState()}"></td>
                 <td class="align-middle" th:text="${task.getDate()}"></td>
+                <td class="align-middle">
+                    <a th:href="@{/edit-host/{id}(id=${task.id})}"><i class="bi bi-pencil-square"></i></a>
+                    <a th:href="@{/deleteTask/{board}/{id}(id=${task.id}, board=${task.getBoard().getId()})}" onclick="return confirm('Вы уверены?')"><i class="bi bi-trash" style="color:#ff000085"></i></a>
+                </td>
             </tr>
         </table>
     </div>
