@@ -21,7 +21,7 @@ public class AdminController {
         model.addAttribute("allUsers", userServiceImpl.allUsers());
         return "admin";
     }
-
+/*
     @PostMapping("/admin")
     public String  deleteUser(@RequestParam(required = true, defaultValue = "" ) Long userId,
                               @RequestParam(required = true, defaultValue = "" ) String action,
@@ -31,6 +31,6 @@ public class AdminController {
         }
         return "redirect:/admin";
     }
-
+*/
 }
 //@role

@@ -36,7 +36,7 @@ public class WebSecurityConfig{
 
         http.authorizeHttpRequests((authz) -> authz
                         .requestMatchers("/registration").permitAll()
-                .requestMatchers("/admin/**").hasRole("ADMIN")
+                .requestMatchers("/admin").permitAll()
                 .requestMatchers("/*.css").permitAll()
                 .requestMatchers("/dashboard").permitAll()
                 .requestMatchers("/fragments/**").permitAll()
