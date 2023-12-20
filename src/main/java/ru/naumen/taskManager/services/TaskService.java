@@ -11,6 +11,8 @@ import java.util.List;
 public interface TaskService {
     List<Task> getAllTask();
 
+    List<Task> getAllTaskForNotification();
+
     void saveTask(Task task);
 
     Task getTaskById(long id);

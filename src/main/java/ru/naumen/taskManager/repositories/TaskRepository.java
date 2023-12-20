@@ -15,5 +15,7 @@ public interface TaskRepository extends CrudRepository<Task, Long> {
 
     List<Task> findByUser(User user);
 
+    List<Task> findByNotificationSend(Boolean notificationSend);
+
 
 }

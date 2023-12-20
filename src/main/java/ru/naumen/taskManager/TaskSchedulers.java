@@ -24,7 +24,7 @@ public class TaskSchedulers {
 
     @Scheduled(fixedRate = 30000) // Запуск каждые 30 секунд
     public void checkTaskTimes() {
-        List<Task> tasks = taskService.getAllTask();
+        List<Task> tasks = taskService.getAllTaskForNotification();
         for (Task task : tasks) {
             System.out.println(task.getNotificationSend());
             if (task.getNotificationSend() != null && !task.getNotificationSend()) {

@@ -74,4 +74,9 @@ public class TaskServiceImpl implements TaskService{
     public void deleteTask(Long taskId) {
         taskRepository.deleteById(taskId);
     }
+
+    @Override
+    public List<Task> getAllTaskForNotification() {
+        return taskRepository.findByNotificationSend(false);
+    }
 }
