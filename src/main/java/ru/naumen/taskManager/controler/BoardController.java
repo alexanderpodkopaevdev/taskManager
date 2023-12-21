@@ -14,6 +14,7 @@ import ru.naumen.taskManager.services.TaskService;
 import ru.naumen.taskManager.services.UserService;
 
 import java.time.LocalDate;
+import java.time.LocalDateTime;
 import java.time.ZoneId;
 import java.util.Date;
 import java.util.List;
@@ -107,7 +108,7 @@ public class BoardController {
     @ResponseBody
     public List<Task> getTaskToday() {
         return taskService.getTaskByDate(LocalDate.ofInstant(
-                new Date().toInstant(), ZoneId.systemDefault()));
+                new Date().toInstant(), ZoneId.systemDefault()), getCurrentUser());
     }
 
 

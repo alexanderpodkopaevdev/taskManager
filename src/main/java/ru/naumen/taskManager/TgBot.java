@@ -12,6 +12,9 @@ import ru.naumen.taskManager.services.BoardService;
 import ru.naumen.taskManager.services.TaskService;
 import ru.naumen.taskManager.services.UserService;
 
+import java.time.LocalDate;
+import java.time.ZoneId;
+import java.util.Date;
 import java.util.List;
 
 @Component
@@ -37,21 +40,11 @@ public class TgBot extends TelegramLongPollingBot {
             String message = update.getMessage().getText().trim();
             String chatId = update.getMessage().getChatId().toString();
 
-            if (message.equals("my task")) {
-                getAllTasks(chatId);
-            }
-            if (message.equals("my board")) {
-                getAllBoards(chatId);
-            }
-            SendMessage sm = new SendMessage();
-            sm.setChatId(chatId);
-            sm.setText(message);
-
-            try {
-                execute(sm);
-            } catch (TelegramApiException e) {
-                //todo add logging to the project.
-                e.printStackTrace();
+            switch (message) {
+                case "my task" -> getAllTasks(chatId);
+                case "my board" -> getAllBoards(chatId);
+                case "today" -> getTodayTask(chatId);
+                default -> sendNotification(chatId, message);
             }
         }
     }
@@ -59,7 +52,20 @@ public class TgBot extends TelegramLongPollingBot {
     private void getAllTasks(String chatId) {
         List<Task> tasks = taskService.getTasksByUser(userService.getUserByTgId(chatId));
         for (Task task : tasks) {
-            String message =  task.getId() + "\nТема: " + task.getTaskName() + "\nОписание: " + task.getDescription();
+            String message =  task.getId() + "\nТема: " + task.getTaskName() + "\nОписание: " + task.getDescription() +
+                    "\nСтатус: " + task.getState() +
+                    "\nДата выполнения: " + task.getDate();
+            sendNotification(chatId, message);
+        }
+    }
+
+    private void getTodayTask(String chatId) {
+        List<Task> tasks = taskService.getTaskByDate(LocalDate.ofInstant(
+                new Date().toInstant(), ZoneId.systemDefault()), userService.getUserByTgId(chatId));
+        for (Task task : tasks) {
+            String message =  task.getId() + "\nТема: " + task.getTaskName() + "\nОписание: " + task.getDescription() +
+                    "\nСтатус: " + task.getState() +
+                    "\nДата выполнения: " + task.getDate();
             sendNotification(chatId, message);
         }
     }

@@ -6,12 +6,13 @@ import ru.naumen.taskManager.models.Task;
 import ru.naumen.taskManager.models.User;
 
 import java.time.LocalDate;
+import java.time.LocalDateTime;
 import java.util.List;
 
 public interface TaskRepository extends CrudRepository<Task, Long> {
     List<Task> findByBoard(Board board);
 
-    List<Task> findByDate(LocalDate date);
+    List<Task> findByDateAfterAndDateBefore(LocalDateTime dateStart, LocalDateTime dateEnd);
 
     List<Task> findByUser(User user);
 

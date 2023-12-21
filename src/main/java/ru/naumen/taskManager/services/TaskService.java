@@ -6,6 +6,7 @@ import ru.naumen.taskManager.models.Task;
 import ru.naumen.taskManager.models.User;
 
 import java.time.LocalDate;
+import java.time.LocalDateTime;
 import java.util.List;
 
 public interface TaskService {
@@ -21,7 +22,7 @@ public interface TaskService {
 
     List<Task> getTasksByUser(User user);
 
-    List<Task> getTaskByDate(LocalDate date);
+    List<Task> getTaskByDate(LocalDate date, User user);
 
     void updateState(Task task, State state);
 

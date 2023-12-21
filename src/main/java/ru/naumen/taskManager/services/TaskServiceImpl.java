@@ -9,6 +9,7 @@ import ru.naumen.taskManager.repositories.BoardRepository;
 import ru.naumen.taskManager.repositories.TaskRepository;
 
 import java.time.LocalDate;
+import java.time.LocalDateTime;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -54,8 +55,8 @@ public class TaskServiceImpl implements TaskService{
     }
 
     @Override
-    public List<Task> getTaskByDate(LocalDate date) {
-        return taskRepository.findByDate(date);
+    public List<Task> getTaskByDate(LocalDate date, User user) {
+        return taskRepository.findByDateAfterAndDateBefore(date.atStartOfDay(), date.atTime(23, 59, 59));
     }
 
     @Override
