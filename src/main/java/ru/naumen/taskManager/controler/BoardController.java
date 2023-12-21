@@ -165,6 +165,9 @@ public class BoardController {
 
     @GetMapping("/deleteBoard/{boardId}")
     public String deleteBoard(@PathVariable Long boardId, Model model) {
+        for (Task task : taskService.getTasksByBoardId(boardId)){
+            taskService.deleteTask(task.getId());
+        }
         boardService.deleteBoardById(boardId);
         return "redirect:/dashboard";
     }
