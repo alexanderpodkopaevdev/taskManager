@@ -41,6 +41,7 @@ public class UserServiceImpl implements UserService, UserDetailsService {
     public boolean saveUser(User user) {
         User userFromDB = userRepository.findByname(user.getUsername());
 
+
         if (userFromDB != null) {
             return false;
         }

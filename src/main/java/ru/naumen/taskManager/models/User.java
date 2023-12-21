@@ -65,4 +65,14 @@ public class User implements UserDetails {
     public boolean isEnabled() {
         return true;
     }
+
+    public String getNameRoles(){
+        String name = new String();
+        for ( Role role : roles ) {
+            name += role.getName();
+        }
+        return name;
+    }
+
+
 }
