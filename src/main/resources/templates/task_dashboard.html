@@ -29,6 +29,7 @@
                 <td class="align-middle">
                     <a th:href="@{/editTask/{id}(id=${task.id})}"><i class="bi bi-pencil-square"></i></a>
                     <a th:href="@{/deleteTask/{board}/{id}(id=${task.id}, board=${task.getBoard().getId()})}" onclick="return confirm('Вы уверены?')"><i class="bi bi-trash" style="color:#ff000085"></i></a>
+                    <a th:href="@{/editState/{board}/{id}(id=${task.id}, board=${task.getBoard().getId()})}" ><i class="bi bi-clipboard2-check" style="color:#ff000085"></i></a>
                 </td>
             </tr>
         </table>

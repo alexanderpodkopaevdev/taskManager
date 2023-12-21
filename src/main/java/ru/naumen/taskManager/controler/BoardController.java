@@ -125,6 +125,13 @@ public class BoardController {
         return "task_dashboard";
     }
 
+    @GetMapping("/editState/{boardId}/{taskId}")
+    public String getTaskByBoards(@PathVariable Long boardId, @PathVariable Long taskId, Model model) {
+        taskService.editState(taskId);
+        model.addAttribute("tasks", taskService.getTasksByBoardId(boardId));
+        return "task_dashboard";
+    }
+
     @GetMapping("/addTask/{boardId}")
     public String addTask(@PathVariable Long boardId, Model model){
         model.addAttribute("taskForm", new Task(boardService.getBoardById(boardId)));

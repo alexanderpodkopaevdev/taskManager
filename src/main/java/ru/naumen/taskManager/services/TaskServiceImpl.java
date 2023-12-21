@@ -77,6 +77,18 @@ public class TaskServiceImpl implements TaskService{
     }
 
     @Override
+    public void editState(Long taskId) {
+        Task task = getTaskById(taskId);
+        if(task.getState().equals(State.CREATED)){
+            task.setState(State.INWORK);
+        }
+        if(task.getState().equals(State.INWORK)){
+            task.setState(State.CLOSED);
+        }
+        saveTask(task);
+    }
+
+    @Override
     public List<Task> getAllTaskForNotification() {
         return taskRepository.findByNotificationSend(false);
     }
