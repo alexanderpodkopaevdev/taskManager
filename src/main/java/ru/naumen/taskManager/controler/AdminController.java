@@ -22,7 +22,7 @@ public class AdminController {
 
     @GetMapping("/admin")
     public String userList(Model model) {
-        if(getCurrentUser().getRoles().stream().anyMatch(i -> i.getName().equals("admin"))){
+        if(getCurrentUser().getRoles().stream().anyMatch(i -> i.getName().equals("ROLE_ADMIN"))){
             model.addAttribute("allUsers", userServiceImpl.allUsers());
             return "admin";
         }
