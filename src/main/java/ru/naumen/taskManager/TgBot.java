@@ -52,7 +52,7 @@ public class TgBot extends TelegramLongPollingBot {
     private void getAllTasks(String chatId) {
         List<Task> tasks = taskService.getTasksByUser(userService.getUserByTgId(chatId));
         for (Task task : tasks) {
-            String message =  task.getId() + "\nТема: " + task.getTaskName() + "\nОписание: " + task.getDescription() +
+            String message =  "Доска: " + task.getBoard().getNameBoard() + "\nТема: " + task.getTaskName() + "\nОписание: " + task.getDescription() +
                     "\nСтатус: " + task.getState() +
                     "\nДата выполнения: " + task.getDate();
             sendNotification(chatId, message);
@@ -63,7 +63,7 @@ public class TgBot extends TelegramLongPollingBot {
         List<Task> tasks = taskService.getTaskByDate(LocalDate.ofInstant(
                 new Date().toInstant(), ZoneId.systemDefault()), userService.getUserByTgId(chatId));
         for (Task task : tasks) {
-            String message =  task.getId() + "\nТема: " + task.getTaskName() + "\nОписание: " + task.getDescription() +
+            String message =  "Доска: " + task.getBoard().getNameBoard() + "\nТема: " + task.getTaskName() + "\nОписание: " + task.getDescription() +
                     "\nСтатус: " + task.getState() +
                     "\nДата выполнения: " + task.getDate();
             sendNotification(chatId, message);
